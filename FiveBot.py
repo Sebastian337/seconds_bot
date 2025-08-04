@@ -19,7 +19,7 @@ def render_progressbar(total, iteration, prefix='', suffix='', length=30, fill='
 
 
 def start_countdown(chat_id, seconds):
-    message_id = bot.send_message(chat_id, f"Осталось: {seconds} секунд\n{render_progressbar(seconds, 0)}")
+    message_id = bot.send_message(chat_id, f"Таймер запущен на {seconds} секунд\n{render_progressbar(seconds, 0)}")
     bot.create_countdown(
         seconds,
         notify_progress,
@@ -54,4 +54,5 @@ def main():
 
 
 if __name__ == '__main__':
+
     main()
