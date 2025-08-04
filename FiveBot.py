@@ -18,7 +18,10 @@ def render_progressbar(total, iteration, prefix='', suffix='', length=30, fill='
     return '{0} |{1}| {2}% {3}'.format(prefix, pbar, percent, suffix)
 
 
-def start_countdown(chat_id, seconds):
+def handle_message(chat_id, text):
+    seconds = parse(text)
+    if seconds is None:
+        bot.send_message(chat_id, "5s")
     message_id = bot.send_message(chat_id, f"Таймер запущен на {seconds} секунд\n{render_progressbar(seconds, 0)}")
     bot.create_countdown(
         seconds,
@@ -28,14 +31,6 @@ def start_countdown(chat_id, seconds):
         total=seconds
     )
     bot.create_timer(seconds, notify, chat_id=chat_id)
-
-
-def handle_message(chat_id, text):
-    seconds = parse(text)
-    if seconds is None:
-        bot.send_message(chat_id, "5s")
-        return
-    start_countdown(chat_id, seconds)
 
 
 def notify_progress(secs_left, chat_id, message_id, total):
@@ -56,3 +51,4 @@ def main():
 if __name__ == '__main__':
 
     main()
+
