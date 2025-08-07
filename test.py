@@ -3,10 +3,6 @@ import ptbot
 from pytimeparse import parse
 
 
-TG_TOKEN = config('TG_TOKEN')
-TG_CHAT_ID = config('TG_CHAT_ID')
-
-
 def render_progressbar(total, iteration, prefix='', suffix='', length=30, fill='█', zfill='░'):
     iteration = min(total, iteration)
     percent = "{0:.1f}"
@@ -48,3 +44,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
